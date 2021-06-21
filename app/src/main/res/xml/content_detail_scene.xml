@@ -3,29 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ConstraintSet android:id="@+id/start">
-
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
         <Constraint android:id="@+id/text_file_name_title"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            app:layout_constraintRight_toLeftOf="parent"/>
-        <!--
-         The reason android:layout_width is set to "100dp"
-         -> I got problem that text_file_name_title blinks when motion starts. Fixing layout_width to specific value was the only way I found-->
+            android:layout_marginTop="32dp"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <Constraint android:id="@+id/text_file_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="parent"/>
+            android:layout_marginTop="32dp"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <Constraint android:id="@+id/text_status_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintRight_toLeftOf="parent"/>
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_status" />
         <Constraint android:id="@+id/text_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="parent"/>
+            android:layout_marginTop="32dp"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_file_name" />
         <Constraint android:id="@+id/button_ok"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,8 +40,14 @@
     </ConstraintSet>
 
     <Transition
+        android:id="@+id/transitionEndToStart"
+        app:constraintSetStart="@id/end"
+        app:constraintSetEnd="@id/start"
+        app:autoTransition="animateToEnd"
+        app:duration="500" />
+    <Transition
+        app:constraintSetStart="@id/start"
         app:constraintSetEnd="@id/end"
-        app:constraintSetStart="@+id/start"
         app:duration="500">
         <OnClick
             app:targetId="@id/button_ok"
