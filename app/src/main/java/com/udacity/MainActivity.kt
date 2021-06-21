@@ -50,12 +50,15 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-
         createChannel(
             getString(R.string.notification_channel_id),
             getString(R.string.notification_channel_name)
         )
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
     }
 
     private val receiver = object : BroadcastReceiver() {
